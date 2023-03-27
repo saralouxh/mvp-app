@@ -11,7 +11,8 @@ module BaseApi
         phone: params[:phone],
         username: params[:username],
         password: params[:password],
-        password_confirmation: params[:password_confirmation]
+        password_confirmation: params[:password_confirmation],
+        username: params[:username]
       )
       begin
         user.save!
