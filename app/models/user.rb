@@ -25,9 +25,10 @@ class User < ApplicationRecord
   has_many :tokens
   has_many :user_roles
   has_many :roles, through: :user_roles
-  has_many :playlists, through: :movies
+  has_many :playlists
   has_many :ratings
   has_many :comments
+  has_many :movies
 
   validates :email, :username, uniqueness: true
   validates :first_name, :last_name, :email, :password, :username, presence: true
