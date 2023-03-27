@@ -2,5 +2,6 @@ class Comment < ApplicationRecord
     belongs_to :movie
     belongs_to :user
 
-    validates :content, presence: true
+    # had to add movie_id to validations
+    validates :content, :movie_id, presence: true
 end
