@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :movies, only: %i[index show create]
+      resources :comments
+      resources :ratings
       namespace :users do
         post :login
         delete :logout
