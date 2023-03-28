@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_23_234232) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_28_004628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_234232) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "movie_id", null: false
+    t.index ["movie_id"], name: "index_comments_on_movie_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -31,12 +35,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_234232) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_playlists_on_user_id"
   end
 
   create_table "ratings", force: :cascade do |t|
     t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "movie_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["movie_id"], name: "index_ratings_on_movie_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -80,6 +90,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_234232) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "comments", "movies"
+  add_foreign_key "comments", "users"
+  add_foreign_key "playlists", "users"
+  add_foreign_key "ratings", "movies"
+  add_foreign_key "ratings", "users"
   add_foreign_key "tokens", "users"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
