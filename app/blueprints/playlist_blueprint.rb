@@ -1,4 +1,5 @@
 class PlaylistBlueprint < Blueprinter::Base
-    identifier :id
-    fields :name
+  identifier :id
+  association :user, blueprint: UserBlueprint, view: :normal
+  fields :name
 end

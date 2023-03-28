@@ -1,4 +1,6 @@
-class RatingBlueprint < Blueprinter::Base 
-    identifier :id
-    fields :rating, :movie, :user, :created_at
+class RatingBlueprint < Blueprinter::Base
+  identifier :id
+  association :user, blueprint: UserBlueprint, view: :normal
+  association :movie, blueprint: MovieBlueprint
+  fields :rating
 end

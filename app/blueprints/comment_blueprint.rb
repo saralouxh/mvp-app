@@ -1,4 +1,6 @@
-class CommentBlueprint < Blueprinter::Base 
-    identifier :id
-    fields :content, :movie, :user, :created_at
+class CommentBlueprint < Blueprinter::Base
+  identifier :id
+  association :user, blueprint: UserBlueprint, view: :normal
+  association :movie, blueprint: MovieBlueprint
+  fields :content
 end
