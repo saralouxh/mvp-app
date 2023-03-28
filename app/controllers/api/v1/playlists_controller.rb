@@ -4,7 +4,7 @@ module Api
             skip_before_action :authenticate, only: %i[index show]
                 
                 def create 
-                    playlist = Playlists::Operations.new_playlist(params, @current_user)
+                    result = Playlists::Operations.new_playlist(params, @current_user)
                     render_error(errors: result.errors.all, status: 400) and return unless result.success?
                     payload = {
                         playlist: PlaylistBlueprint.render_as_hash(result.payload),
