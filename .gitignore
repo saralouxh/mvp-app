@@ -33,3 +33,5 @@
 /config/credentials/staging.key
 
 /config/credentials/test.key
+config/credentials/development.yml.enc
+config/credentials/development.yml.enc
