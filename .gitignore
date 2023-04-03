@@ -35,3 +35,6 @@
 /config/credentials/test.key
 config/credentials/development.yml.enc
 config/credentials/development.yml.enc
+config/credentials.yml.enc
+config/credentials/development.yml.enc
+config/credentials/development.yml.enc
