@@ -31,7 +31,7 @@ class User < ApplicationRecord
   has_many :movies
 
   validates :email, :username, uniqueness: true
-  validates :first_name, :last_name, :email, :password, :username, presence: true
+  validates :name, :email, :password, :username, presence: true
 
   # scope :invite_not_expired, -> { where('invitation_expiration > ?', DateTime.now) }
   # scope :invite_token_is, ->(invitation_token) { where(invitation_token: invitation_token) }
@@ -75,7 +75,7 @@ class User < ApplicationRecord
   #   InvitationWorker.perform_async(id)
   # end
 
-  def name
-    "#{first_name} #{last_name}"
-  end
+  # def name
+  #   "#{name}"
+  # end
 end

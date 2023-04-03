@@ -3,16 +3,12 @@
 module BaseApi
   module Users
     def self.new_user(params)
-
       user = User.new(
-        first_name: params[:first_name],
-        last_name: params[:last_name],
+        name: params[:name],
         email: params[:email],
-        phone: params[:phone],
         username: params[:username],
         password: params[:password],
         password_confirmation: params[:password_confirmation],
-        username: params[:username]
       )
       begin
         user.save!

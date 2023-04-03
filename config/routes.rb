@@ -29,6 +29,7 @@ Rails.application.routes.draw do
         delete :logout
         get :me
         post :create
+        get :index
       end
       resources :playlists
     end
