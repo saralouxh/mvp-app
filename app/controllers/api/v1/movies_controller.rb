@@ -2,6 +2,7 @@ module Api
   module V1
     # Handles endpoints related to users
     class MoviesController < Api::V1::ApplicationController
+      skip_before_action :authenticate, only: %i[index show]
 
       # POST /api/v1/movies
       def create
