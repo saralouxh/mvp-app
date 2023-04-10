@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+(0..10).each do
+    Playlist.create(user_id: "9", name: Faker::Lorem.word)
+end
+
+(0..10).each do
+    Movie.create(imdb_id: rand(0..10), title: Faker::Movie.title)
+end
+
+
