@@ -1,7 +1,8 @@
 class Playlist < ApplicationRecord
-    has_many :movies
     belongs_to :user
+    has_many :movies
+    has_many :comments, as: :commentable
+    has_many :ratings, as: :rated_on
 
     validates :name, presence: true
-    
 end
