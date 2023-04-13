@@ -11,6 +11,7 @@ class Api::V1::ApplicationController < ActionController::API
     @ip = request.remote_ip || 'unknown'
     authenticate_with_http_token do |token, _options|
       @token = Token.find_by(value: token)
+      puts "Token: #{@token}"
       if @token.nil?
         render_unauthorized
       else
