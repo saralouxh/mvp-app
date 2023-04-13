@@ -5,11 +5,14 @@ module Api
   
         def create
           result = Ratings::Operations.new_rating(params, @current_user)
+
           render_error(errors: result.errors.all, status: 400) and return unless result.success?
+
           payload = {
             rating: RatingBlueprint.render_as_hash(result.payload),
             status: 201
           }
+          
           render_success(payload: payload)
         end
   
