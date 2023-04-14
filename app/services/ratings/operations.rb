@@ -18,4 +18,4 @@ module Ratings
         ServiceContract.error(rating.errors.full_messages)
       end
     end
-  end
+end
