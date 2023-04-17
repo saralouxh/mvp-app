@@ -1,7 +1,9 @@
 class Comment < ApplicationRecord
-    belongs_to :movie
+    # belongs_to :movie
+    # belongs_to :playlist
     belongs_to :user
+    belongs_to :commentable, polymorphic: true
 
-    # had to add movie_id to validations
-    validates :content, :movie_id, presence: true
+    # validates :content, :movie_id, presence: true
+    validates :content, presence: true
 end

@@ -1,6 +1,6 @@
 class Rating < ApplicationRecord
-    belongs_to :movie
     belongs_to :user
+    belongs_to :rated_on, polymorphic: true
 
-    validates :rating, :movie_id, presence: true
+    validates :rating, presence: true
 end
