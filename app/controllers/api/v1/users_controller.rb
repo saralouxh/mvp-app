@@ -50,7 +50,7 @@ module Api
       def index
         users = User.all
         payload = {
-          movie: UserBlueprint.render_as_hash(users),
+          user: UserBlueprint.render_as_hash(users),
           status: 200,
         }
         render_success(payload: payload)
