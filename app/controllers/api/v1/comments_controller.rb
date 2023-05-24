@@ -49,13 +49,3 @@ module Api
     end
   end
 end
-
-        def destroy 
-          comment = Comment.find(params[:id])
-          comment.destroy
-          render_success(payload: "Comment was successfully deleted.", status: 200)
-        end
-      end
-    end
-  end
-  
