@@ -2,7 +2,7 @@ module BaseApi
   module Movies
     def self.new_movie(params)
       movie = Movie.new(
-        imdb_id: params[:imdb_id],
+        image: params[:image],
         title: params[:title],
       )
       begin

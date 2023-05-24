@@ -16,7 +16,7 @@ module Api
         def index
           comments = Comment.all
           payload = {
-            comment: CommentBlueprint.render_as_hash(comments),
+            comments: CommentBlueprint.render_as_hash(comments),
             status: 200,
           }
           render_success(payload: payload)
@@ -45,7 +45,6 @@ module Api
           comment = Comment.find(params[:id])
           comment.destroy
           render_success(payload: "Comment was successfully deleted.", status: 200)
-
         end
       end
     end

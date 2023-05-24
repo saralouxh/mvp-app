@@ -6,12 +6,25 @@ module Api
 
       # POST /api/v1/movies
       def create
-        result = BaseApi::Movies.new_movie(params)
-        render_error(errors: "There was a problem creating a new movie", status: 400) and return unless result.success?
-        payload = {
-          user: MovieBlueprint.render_as_hash(result.payload),
-        }
-        render_success(payload: payload, status: 201)
+        playlist = Playlist.find(params[:playlist_id])
+        movie_params = params.require(:movie).permit(:title, :image).except(:id, :runningTimeInMinutes, :titleType, :year, :principals)
+        movie = playlist.movies.build(movie_params)
+      
+        if movie.save
+          render json: movie, status: :created
+        else
+          render json: { error: movie.errors.full_messages.join(', ') }, status: :unprocessable_entity
+        end
+      end
+
+      def update
+        @movie = Movie.find(params[:id])
+        if @movie.update(movie_params)
+          # Redirect to the playlist update action after updating the movie
+          redirect_to update_playlist_path(@movie.playlist_id), notice: 'Movie was successfully updated.'
+        else
+          render :edit
+        end
       end
 
       # GET /api/v1/movies/
@@ -33,6 +46,21 @@ module Api
         }
         render_success(payload: payload)
       end
+
+      def destroy
+        playlist = Playlist.find(params[:playlist_id])
+        movie = playlist.movies.find(params[:id])
+        movie.destroy
+        render_success(payload: "Movie Deleted")
+      end
+
+
+      # private
+
+      def movie_params
+        params.require(:movie).permit(:title, :image)
+      end
+
     end
   end
 end

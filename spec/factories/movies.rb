@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :movie do
-    imdb_id { "MyString" }
+    image { "MyString" }
     title { "MyString" }
   end
 end

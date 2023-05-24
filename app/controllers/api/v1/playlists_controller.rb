@@ -22,10 +22,22 @@ module Api
                     render_success(payload: payload)
                 end
 
+                def user_playlists 
+                    user = User.find(params[:user_id])
+                    playlists = user.playlists
+                    payload = {
+                      playlists: PlaylistBlueprint.render_as_hash(playlists),
+                      status: 200
+                    }
+                    render_success(payload: payload)
+                end
+
                 def show
                     playlist = Playlist.find(params[:id])
+                    movies = playlist.movies
                     payload = {
                         playlist: PlaylistBlueprint.render_as_hash(playlist),
+                        movies: MovieBlueprint.render_as_hash(movies),
                         status: 201
                     }
                     render_success(payload: payload)
@@ -46,6 +58,7 @@ module Api
                     playlist.destroy
                     render_success(payload: "Playlist Deleted")
                 end
+                
         end
     end
 end
