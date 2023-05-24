@@ -21,9 +21,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :movies, only: %i[index show create]
+      resources :movies
       resources :comments
       resources :ratings
+      resources :playlists do
+        resources :movies, only: %i[index show create destroy]
+      end
+      get '/user-playlists/:user_id', to: 'playlists#user_playlists'
       namespace :users do
         post :login
         delete :logout
@@ -31,7 +35,6 @@ Rails.application.routes.draw do
         post :create
         get :index
       end
-      resources :playlists
     end
   end
 end

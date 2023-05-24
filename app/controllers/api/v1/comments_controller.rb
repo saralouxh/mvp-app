@@ -16,7 +16,7 @@ module Api
         def index
           comments = Comment.all
           payload = {
-            comment: CommentBlueprint.render_as_hash(comments),
+            comments: CommentBlueprint.render_as_hash(comments),
             status: 200,
           }
           render_success(payload: payload)
@@ -31,23 +31,21 @@ module Api
           render_success(payload: payload)
         end
 
-        def update
-          result = Comments::Operations.update_comment(params, @current_user)
-          render_error(errors: result.errors.all, status: 400) and return unless result.success?
-          payload = {
-            comment: CommentBlueprint.render_as_hash(result.payload),
-            status: 201
-          }
-          render_success(payload: payload)
-        end
+      def update
+        result = Comments::Operations.update_comment(params, @current_user)
+        render_error(errors: result.errors.all, status: 400) and return unless result.success?
+        payload = {
+          comment: CommentBlueprint.render_as_hash(result.payload),
+          status: 201,
+        }
+        render_success(payload: payload)
+      end
 
-        def destroy 
-          comment = Comment.find(params[:id])
-          comment.destroy
-          render_success(payload: "Comment was successfully deleted.", status: 200)
-
-        end
+      def destroy
+        comment = Comment.find(params[:id])
+        comment.destroy
+        render_success(payload: "Comment was successfully deleted.", status: 200)
       end
     end
   end
-  
+end

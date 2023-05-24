@@ -1,7 +1,7 @@
 module Comments
     module Operations
       def self.new_comment(params, current_user)
-        commentable = params[:commentable_type].constantize.find(params[:commentable_id])
+        commentable = params[:commentable_type].capitalize.constantize.find(params[:commentable_id])
         comment = current_user.comments.new(content: params[:content], commentable: commentable)
         
         return ServiceContract.success(comment) if comment.save

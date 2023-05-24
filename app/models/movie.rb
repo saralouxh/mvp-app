@@ -1,8 +1,7 @@
 class Movie < ApplicationRecord
-    has_many :playlists
+    belongs_to :playlist
     has_many :ratings, as: :rated_on
     has_many :comments, as: :commentable
 
-    validates :imdb_id, uniqueness: true
-    validates :imdb_id, :title, presence: true
+    validates :image, :title, presence: true
 end
