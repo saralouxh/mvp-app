@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: FlixMix-BE_production
-  username: BaseAPI
-  password: <%= ENV['BASEAPI_DATABASE_PASSWORD'] %>
+  database: moviemix_production
+  username: moviemix
+  password: <%= ENV['MOVIEMIX_DATABASE_PASSWORD'] %>
